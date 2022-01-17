@@ -1,0 +1,54 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div id="posts-view">
+    <h1>All Posts</h1>
+    {% if user.is_authenticated %}
+    <form id="new-post-form">
+        <label for="new-post">New Post</label>
+        <textarea autofocus type="text" name="new_post" id="new-post-textbox" placeholder="What's on your mind?"></textarea>
+        <input type="submit" class="btn btn-primary" id="submit-post" value="Post" disabled>
+
+        <div id="error-message" style="color: red; font-weight: 600"></div>
+    </form>
+    {% endif %}
+</div>
+
+<div id="profile-view">
+    <h1 id="profile-username"></h1>
+    <div class="follow-count">
+        <div class="following-section">
+
+        </div>
+        <div class="followers-section">
+
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+        <button class="btn-follow"></button>
+    {% endif %}
+    <div id="profile-posts">
+        
+    </div>
+</div>
+
+{% if user.is_authenticated %}
+<div id="following-posts-view">
+    <h1>Posts from people that <span id="source-user-id"></span> follows</h1>
+
+</div>
+{% endif %}
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item previous"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item next"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/posts.js' %}"></script>
+{% endblock %}
