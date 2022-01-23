@@ -1,0 +1,32 @@
+# Definition of Persistent Volume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv-volume
+  labels:
+    app: postgres
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: '/opt/postgres/data'
+  storageClassName: microk8s-hostpath
+
+---
+
+# Definition of Persistent Volume Claim that will be used by the application
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pv-claim
+  labels:
+   app: postgres
+spec:
+  resources:
+    requests:
+      storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: microk8s-hostpath
