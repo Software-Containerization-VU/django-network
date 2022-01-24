@@ -5,5 +5,5 @@ metadata:
   labels:
     app: postgres
 data:
-  POSTGRES_DB: postgresdb
+  POSTGRES_DB: network_pg
   POSTGRES_USER: postgresadmin
